@@ -23,4 +23,9 @@ public class MyUser implements Serializable {
     private Double weight;
     private Double height;
 
+    private LocalDate date;
+    private Double indexResult;
+    private String indexRange;
+
+
 }

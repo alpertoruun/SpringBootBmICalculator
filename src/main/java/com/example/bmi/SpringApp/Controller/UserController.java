@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.bmi.SpringApp.repo.UserRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,6 +23,10 @@ public class UserController {
 
     @PostMapping
     public MyUser addUser(@RequestBody MyUser user) {
+        user.setDate(LocalDate.now());
+        double bmi = user.getWeight() / Math.pow(user.getHeight(), 2);
+        user.setIndexResult(bmi);
+        user.setIndexRange(BmiCategory.findByValue(bmi).toString());
         return userRepository.save(user);
     }
 

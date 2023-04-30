@@ -35,12 +35,13 @@ public enum BmiCategory {
 
 
     public static BmiCategory findByValue(double value) {
-        for (BmiCategory category : BmiCategory.values()) {
-            if (value >= category.lowerBound && value < category.upperBound) {
-                return category;
-            }
-        }
-
-        throw new IllegalArgumentException("Invalid BMI value: " + value);
+        if (value < 16) return SEVERE_THINNESS;
+        if (value >= 16 && value < 17) return MODERATE_THINNESS;
+        if (value >= 17 && value < 18.5) return MILD_THINNESS;
+        if (value >= 18.5 && value < 25) return NORMAL;
+        if (value >= 25 && value < 30) return OVERWEIGHT;
+        if (value >= 30 && value < 35) return OBESE_CLASS_I;
+        if (value >= 35 && value < 40) return OBESE_CLASS_II;
+        return OBESE_CLASS_III;
     }
 }
