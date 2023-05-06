@@ -9,5 +9,4 @@ public class BmiApplication {
     public static void main(String[] args) {
         SpringApplication.run(BmiApplication.class, args);
     }
-
 }

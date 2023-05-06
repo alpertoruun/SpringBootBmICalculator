@@ -47,7 +47,11 @@ public class UserController {
         user = addUser(user);
         double bmi = user.getIndexResult();
         String message = "BMI değeri başarıyla hesaplandı: " + bmi;
+
+        // Kullanıcıyı ve iletiyi modele ekleyin
+        model.addAttribute("user", user);
         model.addAttribute("message", message);
+
         return "result";
     }
 
