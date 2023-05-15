@@ -22,8 +22,8 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public MyUser addUser(@ModelAttribute MyUser user)  {
-        user.setDate(LocalDate.now());
         double bmi = user.getWeight() / Math.pow(user.getHeight(), 2);
+        user.setDate(LocalDate.now());
         user.setIndexResult(bmi);
         user.setIndexRange(BmiCategory.findByValue(bmi).toString());
         return userRepository.save(user);
@@ -47,8 +47,7 @@ public class UserController {
         user = addUser(user);
         double bmi = user.getIndexResult();
         String message = "BMI değeri başarıyla hesaplandı: " + bmi;
-
-        // Kullanıcıyı ve iletiyi modele ekleyin
+        
         model.addAttribute("user", user);
         model.addAttribute("message", message);
 
